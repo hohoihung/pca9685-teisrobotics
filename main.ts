@@ -22,21 +22,21 @@ let PosicionServo1 = 0
 let PosicionServo2 = 0
 let DireccionServo2 = 0
 let DireccionServo1 = 0
-let controller = PCA9685.chipAddress("0x40")
-PCA9685.init(controller, 50)
+let pca9685 = PCA9685.chipAddress("0x40")
+PCA9685.init(pca9685, 1000)
 DireccionServo1 = 1
 DireccionServo2 = 1
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A) == true && input.buttonIsPressed(Button.B) == false) {
         CalculaServo1()
-        PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, PosicionServo1, controller)
+        PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, PosicionServo1, pca9685)
     } else if (input.buttonIsPressed(Button.B) == true && input.buttonIsPressed(Button.AB) == false) {
         CalculaServo2()
-        PCA9685.setServoPosition(PCA9685.ServoNum.Servo2, PosicionServo2, controller)
+        PCA9685.setServoPosition(PCA9685.ServoNum.Servo2, PosicionServo2, pca9685)
     } else if (input.buttonIsPressed(Button.A) == true && input.buttonIsPressed(Button.AB) == true) {
         CalculaServo1()
         CalculaServo2()
-        PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, PosicionServo1, controller)
-        PCA9685.setServoPosition(PCA9685.ServoNum.Servo2, PosicionServo2, controller)
+        PCA9685.setServoPosition(PCA9685.ServoNum.Servo1, PosicionServo1, pca9685)
+        PCA9685.setServoPosition(PCA9685.ServoNum.Servo2, PosicionServo2, pca9685)
     }
 })
